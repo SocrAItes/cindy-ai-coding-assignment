@@ -12,7 +12,7 @@ export function sourceLinks(pr, check) {
   if (!/^[a-f0-9]{40}$/i.test(pr.sha)) throw new Error('提交 SHA 无效，请刷新 PR');
   return {
     pr: `https://github.com/${repo}/pull/${number}`,
-    commit: `https://github.com/${repoName(pr.headRepo || repo)}/commit/${pr.sha}`,
+    commit: `https://github.com/${repo}/commit/${pr.sha}`,
     check: httpsLink(check?.url),
   };
 }
