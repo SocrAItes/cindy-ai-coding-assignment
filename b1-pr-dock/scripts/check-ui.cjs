@@ -1,0 +1,27 @@
+// Isolated UI fixtures only. This script never accesses GitHub or a real Cindy task.
+const http=require('node:http'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {chromium}=require('playwright');
+const dir=path.resolve(__dirname,'../plugin');
+const mock=`
+const prs=Array.from({length:25},(_,i)=>({repo:'owner/project',headRepo:'contributor/project',number:i+1,title:'界面验证 PR '+(i+1),sha:'a'.repeat(40),authored:(i+1)%2===1,reviewRequested:(i+1)%3===0}));
+const checks=[{kind:'check',id:'1',name:'unit-tests',state:'failed',url:'https://github.com/owner/project/actions/runs/7/job/8'},{kind:'check',id:'2',name:'lint',state:'passed',url:'https://github.com/owner/project/actions/runs/7/job/9'}];
+export class HostClient { async request(method,args={}) {
+if(method==='list')return{login:'ui-fixture',prs};
+if(method==='ci'){if(args.number===4)throw Error('CI permission denied');return{state:['none','failed','passed','running'][args.number%4],sha:'a'.repeat(40),count:2};}
+if(method==='inspect')return{pr:prs.find(p=>p.number===args.number),checks,notices:[],state:'failed',incomplete:false};
+if(method==='output'){const r={output:{kind:'检查输出与注释',text:args.checkId==='check:1'?'Expected 401; received 500':'ESLint completed.',notice:'界面测试 fixture，并非实机数据'}};if(window.holdUnit&&args.checkId==='check:1')return new Promise(resolve=>window.releaseUnit=()=>resolve(r));return r;}
+if(method==='analyze')return{taskId:'fixture-task',phase:'accepted'};
+if(method==='progress')return{record:{taskId:'fixture-task',phase:'accepted'},messages:{items:[{role:'assistant',text:'界面测试回复，并非真实模型结果。'}]}};
+throw Error('unexpected '+method);}}
+`;
+const server=http.createServer((req,res)=>{const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname),file=path.resolve(dir,'.'+(pathname==='/'?'/panel.html':pathname));if(!file.startsWith(dir+path.sep)){res.writeHead(403);res.end();return;}try{res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html');res.end(fs.readFileSync(file));}catch{res.writeHead(404);res.end();}});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({headless:true,...(process.env.PR_DOCK_BROWSER_EXECUTABLE?{executablePath:process.env.PR_DOCK_BROWSER_EXECUTABLE}:{})});try{const page=await browser.newPage({viewport:{width:1100,height:850}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/client.js',r=>r.fulfill({contentType:'text/javascript',body:mock}));await page.goto('http://127.0.0.1:'+server.address().port);await page.getByText('Expected 401; received 500',{exact:true}).waitFor();
+await page.waitForFunction(()=>[...document.querySelectorAll('.p-row .p-state')].every(e=>e.textContent!=='读取中'));
+assert.equal(await page.locator('.p-row').count(),20);assert.equal(await page.locator('.p-row').nth(1).locator('.p-state').innerText(),'通过');assert.equal(await page.locator('.p-row').nth(2).locator('.p-state').innerText(),'运行中');assert.equal(await page.locator('.p-row').nth(3).locator('.p-state').innerText(),'读取失败');
+const links=await page.locator('.p-actions .p-note a').evaluateAll(es=>es.map(e=>e.href));assert.equal(links[1],'https://github.com/contributor/project/commit/'+'a'.repeat(40));
+await page.getByRole('button',{name:'交给 Cindy 排查',exact:true}).click();await page.getByText('界面测试回复，并非真实模型结果。',{exact:true}).waitFor();
+await page.getByRole('button',{name:'下一页',exact:true}).click();assert.equal(await page.locator('.p-row').count(),5);assert.match(await page.locator('.p-row').first().innerText(),/PR 21/);
+await page.locator('[data-scope="mine"]').click();assert.equal(await page.locator('.p-row').count(),13);assert.equal(await page.locator('.p-pager').count(),0);
+await page.locator('[data-check="check:2"]').click();await page.getByText('ESLint completed.',{exact:true}).waitFor();await page.evaluate(()=>window.holdUnit=true);await page.locator('[data-check="check:1"]').click();await page.waitForFunction(()=>typeof window.releaseUnit==='function');await page.locator('[data-check="check:2"]').click();await page.getByText('ESLint completed.',{exact:true}).waitFor();await page.evaluate(()=>window.releaseUnit());assert.ok(!(await page.locator('.p-log').innerText()).includes('received 500'));
+for(const width of [320,390,736,1100]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow '+width);}
+await page.locator('[data-scope="all"]').click();await page.waitForFunction(()=>[...document.querySelectorAll('.p-row .p-state')].every(e=>e.textContent!=='读取中'));await page.screenshot({path:(process.argv[2] || path.join(require('node:os').tmpdir(),'pr-dock-ui-fixture.png')),fullPage:true});assert.deepEqual(errors,[]);console.log(JSON.stringify({pageErrors:errors,listCI:true,pagination:true,filters:true,forkCommitLink:true,analysisView:true,staleOutputGuard:true,responsiveWidths:[320,390,736,1100]}));}finally{await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e.stack);server.close();process.exitCode=1;});
