@@ -1,0 +1,238 @@
+﻿2026-11-06T08:04:17.2529609Z Current runner version: '2.338.2'
+2026-11-06T08:04:17.2566960Z ##[group]Runner Image Provisioner
+2026-11-06T08:04:17.2568225Z Hosted Compute Agent
+2026-11-06T08:04:17.2569414Z Version: 20261028.624
+2026-11-06T08:04:17.2570824Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-06T08:04:17.2572288Z Build Date: 2026-10-28T21:51:42Z
+2026-11-06T08:04:17.2573487Z Worker ID: {2f0e42b5-f11a-4d75-9eeb-35edc02768ae}
+2026-11-06T08:04:17.2574866Z Region: eastus
+2026-11-06T08:04:17.2575876Z Cloud: Azure
+2026-11-06T08:04:17.2576879Z ##[endgroup]
+2026-11-06T08:04:17.2579245Z ##[group]Operating System
+2026-11-06T08:04:17.2580320Z Ubuntu
+2026-11-06T08:04:17.2581521Z 26.04.1
+2026-11-06T08:04:17.2582518Z LTS
+2026-11-06T08:04:17.2583590Z ##[endgroup]
+2026-11-06T08:04:17.2584623Z ##[group]Runner Image
+2026-11-06T08:04:17.2585783Z Image: ubuntu-26.04
+2026-11-06T08:04:17.2586769Z Version: 20261101.186.1
+2026-11-06T08:04:17.2589096Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-06T08:04:17.2592283Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+2026-11-06T08:04:17.2594165Z ##[endgroup]
+2026-11-06T08:04:17.2596214Z ##[group]GITHUB_TOKEN Permissions
+2026-11-06T08:04:17.2598894Z Contents: read
+2026-11-06T08:04:17.2599968Z Metadata: read
+2026-11-06T08:04:17.2601163Z ##[endgroup]
+2026-11-06T08:04:17.2604400Z Secret source: Actions
+2026-11-06T08:04:17.2606153Z Cache mode: write
+2026-11-06T08:04:17.2607544Z Prepare workflow directory
+2026-11-06T08:04:17.3213160Z Prepare all required actions
+2026-11-06T08:04:17.3284162Z Getting action download info
+2026-11-06T08:04:17.4989619Z Download action repository 'actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+2026-11-06T08:04:17.6506629Z Download action repository 'actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38' (SHA:249970729cb0ef3589644e2896645e5dc5ba9c38)
+2026-11-06T08:04:17.8171307Z Complete job name: unit-tests
+2026-11-06T08:04:17.9084122Z ##[group]Run actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+2026-11-06T08:04:17.9085241Z with:
+2026-11-06T08:04:17.9085701Z   persist-credentials: false
+2026-11-06T08:04:17.9086315Z   repository: SocrAItes/cindy-ai-coding-assignment
+2026-11-06T08:04:17.9090396Z   token: ***
+2026-11-06T08:04:17.9090989Z   ssh-strict: true
+2026-11-06T08:04:17.9091441Z   ssh-user: git
+2026-11-06T08:04:17.9091867Z   clean: true
+2026-11-06T08:04:17.9092316Z   sparse-checkout-cone-mode: true
+2026-11-06T08:04:17.9092854Z   fetch-depth: 1
+2026-11-06T08:04:17.9093304Z   fetch-tags: false
+2026-11-06T08:04:17.9093756Z   show-progress: true
+2026-11-06T08:04:17.9094206Z   lfs: false
+2026-11-06T08:04:17.9094620Z   submodules: false
+2026-11-06T08:04:17.9095072Z   set-safe-directory: true
+2026-11-06T08:04:17.9095588Z   allow-unsafe-pr-checkout: false
+2026-11-06T08:04:17.9096365Z ##[endgroup]
+2026-11-06T08:04:18.1766123Z Syncing repository: SocrAItes/cindy-ai-coding-assignment
+2026-11-06T08:04:18.1769508Z ##[group]Getting Git version info
+2026-11-06T08:04:18.1770926Z Working directory is '/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment'
+2026-11-06T08:04:18.1772891Z [command]/usr/bin/git version
+2026-11-06T08:04:18.1773955Z git version 2.56.0
+2026-11-06T08:04:18.1798055Z ##[endgroup]
+2026-11-06T08:04:18.1814326Z Temporarily overriding HOME='/home/runner/work/_temp/62fda8f2-363f-4daf-adc1-c581056df860' before making global git config changes
+2026-11-06T08:04:18.1817319Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-06T08:04:18.1821712Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment
+2026-11-06T08:04:18.1896949Z Deleting the contents of '/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment'
+2026-11-06T08:04:18.1900119Z ##[group]Determining repository object format
+2026-11-06T08:04:18.1907974Z ##[endgroup]
+2026-11-06T08:04:18.1909767Z ##[group]Initializing the repository
+2026-11-06T08:04:18.1919262Z [command]/usr/bin/git init /home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment
+2026-11-06T08:04:18.2027734Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-06T08:04:18.2030139Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-06T08:04:18.2032145Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-06T08:04:18.2033494Z hint: call:
+2026-11-06T08:04:18.2034201Z hint:
+2026-11-06T08:04:18.2035105Z hint: 	git config --global init.defaultBranch <name>
+2026-11-06T08:04:18.2036198Z hint:
+2026-11-06T08:04:18.2037219Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-06T08:04:18.2038905Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-06T08:04:18.2040250Z hint:
+2026-11-06T08:04:18.2041183Z hint: 	git branch -m <name>
+2026-11-06T08:04:18.2042033Z hint:
+2026-11-06T08:04:18.2043247Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-06T08:04:18.2048095Z Initialized empty Git repository in /home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git/
+2026-11-06T08:04:18.2075115Z [command]/usr/bin/git remote add origin https://github.com/SocrAItes/cindy-ai-coding-assignment
+2026-11-06T08:04:18.2142750Z ##[endgroup]
+2026-11-06T08:04:18.2144249Z ##[group]Disabling automatic garbage collection
+2026-11-06T08:04:18.2155948Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-06T08:04:18.2204238Z ##[endgroup]
+2026-11-06T08:04:18.2205651Z ##[group]Setting up auth
+2026-11-06T08:04:18.2206902Z Removing SSH command configuration
+2026-11-06T08:04:18.2214554Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-06T08:04:18.2260388Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-06T08:04:18.2809331Z Removing HTTP extra header
+2026-11-06T08:04:18.2819249Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-06T08:04:18.2870333Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-06T08:04:18.3176739Z Removing includeIf entries pointing to credentials config files
+2026-11-06T08:04:18.3184999Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-06T08:04:18.3228704Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-06T08:04:18.3544682Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-06T08:04:18.3594167Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git.path /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.3636461Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.3681674Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.3715938Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.3747420Z ##[endgroup]
+2026-11-06T08:04:18.3748262Z ##[group]Fetching the repository
+2026-11-06T08:04:18.3756590Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2b1aef632e0e1a93077bb1a71bdf7ff887132b7d:refs/remotes/pull/1/merge
+2026-11-06T08:04:18.5659413Z From https://github.com/SocrAItes/cindy-ai-coding-assignment
+2026-11-06T08:04:18.5661598Z  * [new ref]         2b1aef632e0e1a93077bb1a71bdf7ff887132b7d -> pull/1/merge
+2026-11-06T08:04:18.5666688Z ##[endgroup]
+2026-11-06T08:04:18.5668430Z ##[group]Determining the checkout info
+2026-11-06T08:04:18.5670802Z ##[endgroup]
+2026-11-06T08:04:18.5675643Z [command]/usr/bin/git sparse-checkout disable
+2026-11-06T08:04:18.5729683Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-06T08:04:18.5764822Z ##[group]Checking out the ref
+2026-11-06T08:04:18.5767179Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2026-11-06T08:04:18.5830789Z Note: switching to 'refs/remotes/pull/1/merge'.
+2026-11-06T08:04:18.5831764Z 
+2026-11-06T08:04:18.5832384Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-06T08:04:18.5833434Z changes and commit them, and you can discard any commits you make in this
+2026-11-06T08:04:18.5834429Z state without impacting any branches by switching back to a branch.
+2026-11-06T08:04:18.5834994Z 
+2026-11-06T08:04:18.5835381Z If you want to create a new branch to retain commits you create, you may
+2026-11-06T08:04:18.5836281Z do so (now or later) by using -c with the switch command. Example:
+2026-11-06T08:04:18.5836800Z 
+2026-11-06T08:04:18.5837043Z   git switch -c <new-branch-name>
+2026-11-06T08:04:18.5837405Z 
+2026-11-06T08:04:18.5837640Z Or undo this operation with:
+2026-11-06T08:04:18.5837977Z 
+2026-11-06T08:04:18.5838192Z   git switch -
+2026-11-06T08:04:18.5838464Z 
+2026-11-06T08:04:18.5838904Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-06T08:04:18.5839505Z 
+2026-11-06T08:04:18.5840768Z HEAD is now at 2b1aef6 Merge 4fe1cba38280f9cf5733779b0e4a49cb8d9fa3b6 into 4b84bceb1f7604994969afb940d931c92780458e
+2026-11-06T08:04:18.5854324Z ##[endgroup]
+2026-11-06T08:04:18.5904066Z [command]/usr/bin/git log -1 --format=%H
+2026-11-06T08:04:18.5930927Z 2b1aef632e0e1a93077bb1a71bdf7ff887132b7d
+2026-11-06T08:04:18.5941010Z ##[group]Removing auth
+2026-11-06T08:04:18.5941809Z Removing SSH command configuration
+2026-11-06T08:04:18.5945027Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-06T08:04:18.5978401Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-06T08:04:18.6264844Z Removing HTTP extra header
+2026-11-06T08:04:18.6269621Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-06T08:04:18.6305677Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-06T08:04:18.6585363Z Removing includeIf entries pointing to credentials config files
+2026-11-06T08:04:18.6588989Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-06T08:04:18.6616103Z includeif.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git.path
+2026-11-06T08:04:18.6618662Z includeif.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git/worktrees/*.path
+2026-11-06T08:04:18.6620256Z includeif.gitdir:/github/workspace/.git.path
+2026-11-06T08:04:18.6622104Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-06T08:04:18.6627754Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git.path
+2026-11-06T08:04:18.6652052Z /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6667035Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git.path /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6707745Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git/worktrees/*.path
+2026-11-06T08:04:18.6733421Z /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6747166Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6785001Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-06T08:04:18.6809658Z /github/runner_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6819876Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6863082Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-06T08:04:18.6894248Z /github/runner_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6904931Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config
+2026-11-06T08:04:18.6941506Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-06T08:04:18.7221912Z Removing credentials config '/home/runner/work/_temp/git-credentials-eb0a57e6-8d84-4e1a-b923-fd1b3768498d.config'
+2026-11-06T08:04:18.7231680Z ##[endgroup]
+2026-11-06T08:04:18.7631840Z ##[group]Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+2026-11-06T08:04:18.7632737Z with:
+2026-11-06T08:04:18.7633200Z   node-version: 24
+2026-11-06T08:04:18.7633682Z   check-latest: false
+2026-11-06T08:04:18.7637843Z   token: ***
+2026-11-06T08:04:18.7638331Z   package-manager-cache: true
+2026-11-06T08:04:18.7638896Z ##[endgroup]
+2026-11-06T08:04:18.9164945Z Found in cache @ /opt/hostedtoolcache/node/24.22.2/x64
+2026-11-06T08:04:18.9169132Z ##[group]Environment details
+2026-11-06T08:04:19.3587706Z node: v24.22.2
+2026-11-06T08:04:19.3588543Z npm: 11.19.1
+2026-11-06T08:04:19.3589273Z yarn: 1.22.22
+2026-11-06T08:04:19.3591545Z ##[endgroup]
+2026-11-06T08:04:19.3797193Z ##[group]Run node --test test/*.test.mjs
+2026-11-06T08:04:19.3798877Z [36;1mnode --test test/*.test.mjs[0m
+2026-11-06T08:04:19.3863900Z shell: /usr/bin/bash -e {0}
+2026-11-06T08:04:19.3865176Z ##[endgroup]
+2026-11-06T08:04:19.5101258Z ✖ links keep the PR repository, fork commit and exact job distinct (2.217909ms)
+2026-11-06T08:04:19.5129453Z ✔ a new head commit stops dispatch instead of analyzing stale evidence (1.653244ms)
+2026-11-06T08:04:19.5158770Z ✔ double-click and later replay create one task and send one input (6.801511ms)
+2026-11-06T08:04:19.5165450Z ✔ an unknown send acknowledgement is durable and never silently replayed (0.736875ms)
+2026-11-06T08:04:19.5170938Z ✔ unreadable checks and missing checks cannot appear as CI success (0.218799ms)
+2026-11-06T08:04:19.5176525Z ✔ partial check API permissions remain visible alongside readable statuses (0.7722ms)
+2026-11-06T08:04:19.5182573Z ✔ GitHub authentication failure produces a connection error, not an empty PR list (0.691611ms)
+2026-11-06T08:04:19.5188612Z ✔ a rerun that passes or replaces the selected failure cannot be handed off as an old failure (0.571186ms)
+2026-11-06T08:04:19.5194241Z ✔ a push while output is being read stops task creation (0.611982ms)
+2026-11-06T08:04:19.5197728Z ✔ handoff uses freshly read failure output and the latest source link (1.186534ms)
+2026-11-06T08:04:19.5243635Z ✔ CI summaries respect a shared concurrency limit and deduplicate page items (5.660081ms)
+2026-11-06T08:04:19.5247797Z ✔ page changes ignore old responses while individual failures remain unknown (2.98528ms)
+2026-11-06T08:04:19.5251057Z ✔ a refresh never accepts the previous refresh result for the same PR (1.708558ms)
+2026-11-06T08:04:19.5253931Z ✔ fresh selected PR details cannot be replaced by an older list summary (3.579231ms)
+2026-11-06T08:04:19.5256331Z ℹ tests 14
+2026-11-06T08:04:19.5257958Z ℹ suites 0
+2026-11-06T08:04:19.5259193Z ℹ pass 13
+2026-11-06T08:04:19.5261298Z ℹ fail 1
+2026-11-06T08:04:19.5262472Z ℹ cancelled 0
+2026-11-06T08:04:19.5263588Z ℹ skipped 0
+2026-11-06T08:04:19.5264837Z ℹ todo 0
+2026-11-06T08:04:19.5266147Z ℹ duration_ms 92.874166
+2026-11-06T08:04:19.5266914Z 
+2026-11-06T08:04:19.5267406Z ✖ failing tests:
+2026-11-06T08:04:19.5268000Z 
+2026-11-06T08:04:19.5268609Z test at test/core.test.mjs:9:1
+2026-11-06T08:04:19.5270880Z ✖ links keep the PR repository, fork commit and exact job distinct (2.217909ms)
+2026-11-06T08:04:19.5273402Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+2026-11-06T08:04:19.5275706Z   + actual - expected
+2026-11-06T08:04:19.5276793Z   
+2026-11-06T08:04:19.5278726Z   + 'https://github.com/makecindy/cindy/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+2026-11-06T08:04:19.5282449Z   - 'https://github.com/contributor/cindy/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+2026-11-06T08:04:19.5284770Z   
+2026-11-06T08:04:19.5287783Z       at TestContext.<anonymous> (file:///home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment/b1-pr-dock/test/core.test.mjs:12:9)
+2026-11-06T08:04:19.5292364Z       at Test.runInAsyncScope (node:async_hooks:227:14)
+2026-11-06T08:04:19.5294166Z       at Test.run (node:internal/test_runner/test:1402:25)
+2026-11-06T08:04:19.5295933Z       at Test.start (node:internal/test_runner/test:1262:17)
+2026-11-06T08:04:19.5298136Z       at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+2026-11-06T08:04:19.5300087Z     generatedMessage: true,
+2026-11-06T08:04:19.5301520Z     code: 'ERR_ASSERTION',
+2026-11-06T08:04:19.5303629Z     actual: 'https://github.com/makecindy/cindy/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+2026-11-06T08:04:19.5306951Z     expected: 'https://github.com/contributor/cindy/commit/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+2026-11-06T08:04:19.5309310Z     operator: 'strictEqual',
+2026-11-06T08:04:19.5310710Z     diff: 'simple'
+2026-11-06T08:04:19.5311691Z   }
+2026-11-06T08:04:19.5336931Z ##[error]Process completed with exit code 1.
+2026-11-06T08:04:19.5645375Z Post job cleanup.
+2026-11-06T08:04:19.6596151Z [command]/usr/bin/git version
+2026-11-06T08:04:19.6644056Z git version 2.56.0
+2026-11-06T08:04:19.6725593Z Temporarily overriding HOME='/home/runner/work/_temp/b05141ca-6ba5-4fd2-8029-63566df4b6d0' before making global git config changes
+2026-11-06T08:04:19.6733398Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-06T08:04:19.6739090Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/cindy-ai-coding-assignment/cindy-ai-coding-assignment
+2026-11-06T08:04:19.6778510Z Removing SSH command configuration
+2026-11-06T08:04:19.6786787Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-06T08:04:19.6832310Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-06T08:04:19.7175838Z Removing HTTP extra header
+2026-11-06T08:04:19.7186174Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-06T08:04:19.7256362Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-06T08:04:19.7608332Z Removing includeIf entries pointing to credentials config files
+2026-11-06T08:04:19.7624487Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-06T08:04:19.7676604Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-06T08:04:19.8157255Z Cleaning up orphan processes

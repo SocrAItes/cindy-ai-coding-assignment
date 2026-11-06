@@ -37,6 +37,25 @@ export function clipUtf8(text, maxBytes) {
   const bytes = new TextEncoder().encode(String(text));
   return bytes.length > maxBytes ? new TextDecoder().decode(bytes.slice(0, maxBytes)) + '\n[内容已截断]' : String(text);
 }
+export async function readAnalysisMessages(tasks, taskId, previous = {}) {
+  const replies = new Map((previous.items || []).map(item => [item.id, item]));
+  const cursors = new Set();
+  let after = previous.after;
+  for (let pageNumber = 0; pageNumber < 10; pageNumber++) {
+    const page = await tasks.readMessages({ taskId, limit: 50, ...(after ? { after } : {}) });
+    if (!Array.isArray(page?.items)) throw new Error('任务消息格式异常，请在 Cindy 任务列表查看。');
+    for (const item of page.items) {
+      if (item.role === 'assistant') replies.set(item.id, item);
+    }
+    const items = [...replies.values()].slice(-20);
+    // Re-read the final page on refresh: a streaming reply may keep the same ID.
+    if (!page.nextCursor) return { items, after, hasMore: false };
+    if (page.nextCursor === after || cursors.has(page.nextCursor)) throw new Error('任务消息分页未前进，请稍后重试。');
+    cursors.add(page.nextCursor);
+    after = page.nextCursor;
+    if (pageNumber === 9) return { items, after, hasMore: true };
+  }
+}
 export function analysisPrompt(pr, check, output) {
   const links = sourceLinks(pr, check);
   return [

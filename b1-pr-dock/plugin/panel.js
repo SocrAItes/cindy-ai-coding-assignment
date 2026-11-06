@@ -24,7 +24,8 @@ function analysisText(page) {
     if (Array.isArray(item.content)) return item.content.filter(block => block.type === 'text').map(block => block.text).join('\n');
     return '';
   }).filter(Boolean);
-  return messages.join('\n\n') || '尚未收到可读回复。你可以在 Cindy 任务列表查看或接手。';
+  const remaining = page?.hasMore ? '还有任务消息未读完，请再次刷新分析进展。' : '';
+  return [messages.join('\n\n'), remaining].filter(Boolean).join('\n\n') || '尚未收到可读回复。你可以在 Cindy 任务列表查看或接手。';
 }
 async function refresh() {
   if (state.loading) return;
@@ -61,7 +62,10 @@ async function output() {
   state.output = null; state.outputLoading = true; state.progress = null; state.error = ''; render();
   try {
     const data = await host.request('output', { repo: pr.repo, number: pr.number, checkId: id });
-    if (generation === outputGeneration && prGeneration === selection) state.output = data.output;
+    if (generation === outputGeneration && prGeneration === selection) {
+      state.output = data.output;
+      state.progress = data.record ? { record: data.record } : null;
+    }
   } catch (error) { if (generation === outputGeneration && prGeneration === selection) state.error = error.message; }
   finally { if (generation === outputGeneration) state.outputLoading = false; render(); }
 }

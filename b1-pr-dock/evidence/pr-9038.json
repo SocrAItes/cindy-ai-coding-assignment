@@ -1,0 +1,172 @@
+{
+  "ok": true,
+  "result": {
+    "pr": {
+      "repo": "makecindy/cindy",
+      "number": 9038,
+      "title": "fix(desktop): restore routine enabled state after rejected save",
+      "sha": "e93150f0c04c1f008c25908675aeb921393ff80b",
+      "headRepo": "Battleplus/cindy",
+      "url": "https://github.com/makecindy/cindy/pull/9038"
+    },
+    "checks": [
+      {
+        "kind": "check",
+        "id": "127263483744",
+        "name": "Greptile Review",
+        "state": "failed",
+        "url": "https://app.greptile.com/-/switch-tenant?tenant=xindong&next=%2Fmakecindy%2Fcindy%2Fpull%2F9038",
+        "conclusion": "failure"
+      },
+      {
+        "kind": "check",
+        "id": "127263466662",
+        "name": "Windows unit tests (3/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466662",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466637",
+        "name": "Linux unit tests (1/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466637",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466595",
+        "name": "Linux unit tests (2/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466595",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466592",
+        "name": "check:pr-design-basis",
+        "state": "failed",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879721/job/127263466592",
+        "conclusion": "failure"
+      },
+      {
+        "kind": "check",
+        "id": "127263466579",
+        "name": "Windows unit tests (2/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466579",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466546",
+        "name": "Windows unit tests (4/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466546",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466515",
+        "name": "Linux unit tests (4/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466515",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466501",
+        "name": "verify-checks",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466501",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466485",
+        "name": "Desktop Git integration",
+        "state": "passed",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466485",
+        "conclusion": "success"
+      },
+      {
+        "kind": "check",
+        "id": "127263466446",
+        "name": "Linux unit tests (3/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466446",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466429",
+        "name": "Windows unit tests (1/4)",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466429",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263466120",
+        "name": "Windows runner and database checks",
+        "state": "running",
+        "url": "https://github.com/makecindy/cindy/actions/runs/42032879482/job/127263466120",
+        "conclusion": null
+      },
+      {
+        "kind": "check",
+        "id": "127263458041",
+        "name": "DCO",
+        "state": "passed",
+        "url": "https://probot.github.io/apps/dco/",
+        "conclusion": "success"
+      }
+    ],
+    "incomplete": false,
+    "notices": [],
+    "state": "failed",
+    "failures": [
+      {
+        "check": {
+          "kind": "check",
+          "id": "127263483744",
+          "name": "Greptile Review",
+          "state": "failed",
+          "url": "https://app.greptile.com/-/switch-tenant?tenant=xindong&next=%2Fmakecindy%2Fcindy%2Fpull%2F9038",
+          "conclusion": "failure"
+        },
+        "links": {
+          "pr": "https://github.com/makecindy/cindy/pull/9038",
+          "commit": "https://github.com/Battleplus/cindy/commit/e93150f0c04c1f008c25908675aeb921393ff80b",
+          "check": "https://app.greptile.com/-/switch-tenant?tenant=xindong&next=%2Fmakecindy%2Fcindy%2Fpull%2F9038"
+        },
+        "output": {
+          "kind": "检查输出与注释",
+          "text": "Base review: Confidence 3/5 — below your required 4/5\n\nGreptile reviewed this pull request successfully — this check reflects your team's confidence threshold, not a review failure. The review scored 3/5, below the 4/5 this repository requires for the check to pass.",
+          "notice": "当前展示 GitHub 检查输出和注释；完整原始日志通过检查链接查看。"
+        }
+      },
+      {
+        "check": {
+          "kind": "check",
+          "id": "127263466592",
+          "name": "check:pr-design-basis",
+          "state": "failed",
+          "url": "https://github.com/makecindy/cindy/actions/runs/42032879721/job/127263466592",
+          "conclusion": "failure"
+        },
+        "links": {
+          "pr": "https://github.com/makecindy/cindy/pull/9038",
+          "commit": "https://github.com/Battleplus/cindy/commit/e93150f0c04c1f008c25908675aeb921393ff80b",
+          "check": "https://github.com/makecindy/cindy/actions/runs/42032879721/job/127263466592"
+        },
+        "output": {
+          "kind": "检查输出与注释",
+          "text": ".github:13\n\nProcess completed with exit code 1.\n\n\n.github:1\n\n\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\"\n",
+          "notice": "当前展示 GitHub 检查输出和注释；完整原始日志通过检查链接查看。"
+        }
+      }
+    ]
+  }
+}

@@ -1,8 +1,17 @@
 (async () => {
-  const [{ GitHub }, { sourceLinks, evidenceKey, startAnalysis }] = await Promise.all([import('./github.js'), import('./core.js')]);
+  const [{ GitHub }, { sourceLinks, evidenceKey, startAnalysis, readAnalysisMessages }] = await Promise.all([import('./github.js'), import('./core.js')]);
   const channel = new BroadcastChannel('pr-workbench:v1');
   const github = new GitHub(request => cindy.fetch(request));
   const snapshots = new Map(), requests = new Map();
+  const progressPages = new Map(), progressReads = new Map();
+  function taskMessages(taskId) {
+    if (progressReads.has(taskId)) return progressReads.get(taskId);
+    const reading = readAnalysisMessages(cindy.tasks, taskId, progressPages.get(taskId))
+      .then(page => { progressPages.set(taskId, page); return page; })
+      .finally(() => progressReads.delete(taskId));
+    progressReads.set(taskId, reading);
+    return reading;
+  }
   const storage = {
     async read() { const r = await fetch('/kv'); if (!r.ok) throw new Error('无法读取插件状态'); return r.json(); },
     async write(value) { const r = await fetch('/kv', { method: 'PUT', body: JSON.stringify(value) }); if (!r.ok) throw new Error('无法保存插件状态，已停止派发。'); },
@@ -28,7 +37,8 @@
     const key = evidenceKey(pr, check);
     if (method === 'output') {
       const output = await github.output(pr, check);
-      return { output, links: sourceLinks(pr, check) };
+      const record = (await storage.read()).analysisRecords?.[key];
+      return { output, links: sourceLinks(pr, check), record: record?.taskId ? record : null };
     }
     if (method === 'analyze') {
       if (!cindy.tasks) throw new Error('当前 Cindy 不支持插件任务接口。');
@@ -38,7 +48,7 @@
     if (method === 'progress') {
       const record = (await storage.read()).analysisRecords?.[key];
       if (!record?.taskId) throw new Error('这项检查还没有关联的分析任务');
-      return { record, messages: await cindy.tasks.readMessages({ taskId: record.taskId, limit: 20 }),
+      return { record, messages: await taskMessages(record.taskId),
         run: record.runId ? await cindy.tasks.getRun({ runId: record.runId }) : null };
     }
     throw new Error('不支持的操作');

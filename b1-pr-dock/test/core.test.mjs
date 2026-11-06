@@ -1,10 +1,47 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sourceLinks, httpsLink, aggregateChecks, startAnalysis } from '../plugin/core.js';
+import { sourceLinks, httpsLink, aggregateChecks, startAnalysis, readAnalysisMessages } from '../plugin/core.js';
 import { GitHub } from '../plugin/github.js';
 const pr={repo:'makecindy/cindy',headRepo:'contributor/cindy',number:248,title:'Example',sha:'a'.repeat(40)};
 const check={kind:'check',id:'42',name:'unit-tests',state:'failed',url:'https://github.com/makecindy/cindy/actions/runs/7/job/8'};
 const output={kind:'检查输出',text:'Expected 401; received 500.',notice:'不是完整日志。'};
+test('analysis reads past tool messages to the assistant reply on later pages',async()=>{
+ const calls=[];
+ const tasks={readMessages:async request=>{
+  calls.push(request);
+  return request.after ? {items:[{id:'reply',role:'assistant',content:'诊断结论'}],nextCursor:null}
+    : {items:Array.from({length:50},(_,i)=>({id:'tool-'+i,role:'tool_use',content:'tool output'})),nextCursor:'opaque-next'};
+ }};
+ const page=await readAnalysisMessages(tasks,'task-1');
+ assert.deepEqual(page.items,[{id:'reply',role:'assistant',content:'诊断结论'}]);
+ assert.equal(calls[1].after,'opaque-next');assert.equal(page.hasMore,false);
+});
+test('analysis refresh rereads the last page and updates a streaming reply without duplicates',async()=>{
+ let final=false;const requests=[];
+ const tasks={readMessages:async request=>{
+  requests.push(request);
+  if(!request.after)return{items:[{id:'user',role:'user',content:'request'}],nextCursor:'last-page'};
+  return{items:[{id:'reply',role:'assistant',content:final?'完整结论':'部分结论'}],nextCursor:null};
+ }};
+ const first=await readAnalysisMessages(tasks,'task-1');final=true;
+ const refreshed=await readAnalysisMessages(tasks,'task-1',first);
+ assert.equal(requests[2].after,'last-page');assert.equal(refreshed.items.length,1);
+ assert.equal(refreshed.items[0].content,'完整结论');
+});
+test('analysis rejects a stuck host cursor instead of looping or hiding the error',async()=>{
+ let count=0;const tasks={readMessages:async()=>{count++;return{items:[],nextCursor:'stuck'};}};
+ await assert.rejects(readAnalysisMessages(tasks,'task-1'),/分页未前进/);assert.equal(count,2);
+});
+test('long task history can continue from its saved cursor on the next refresh',async()=>{
+ const calls=[];const tasks={readMessages:async request=>{
+  const page=Number(request.after||0);calls.push(page);
+  return page===10?{items:[{id:'final',role:'assistant',content:'最终结论'}],nextCursor:null}
+    :{items:[{id:'tool-'+page,role:'tool_use',content:'trace'}],nextCursor:String(page+1)};
+ }};
+ const first=await readAnalysisMessages(tasks,'task-1');assert.equal(first.hasMore,true);
+ const next=await readAnalysisMessages(tasks,'task-1',first);
+ assert.equal(calls.length,11);assert.equal(calls[10],10);assert.equal(next.items[0].content,'最终结论');
+});
 function fixture(){let db={};const calls={create:0,send:0};const storage={read:async()=>structuredClone(db),write:async v=>{db=structuredClone(v);}};const tasks={capabilities:async()=>({operations:['create','send','readMessages']}),create:async()=>{calls.create++;return{taskId:'task-1',revision:1}},send:async()=>{calls.send++;return{runId:'run-1'}}};return{calls,storage,tasks,pr,check,output,currentSha:pr.sha};}
 test('links keep the PR repository, fork commit and exact job distinct',()=>{
  const links=sourceLinks(pr,check);

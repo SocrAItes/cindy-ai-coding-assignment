@@ -45,7 +45,7 @@
 #cindy-pr-columns .p-checkrow strong{display:block;font-size:12px;font-weight:500;overflow-wrap:anywhere}
 #cindy-pr-columns .p-checkmeta{display:flex;gap:6px;justify-content:space-between;flex-wrap:wrap;font-size:11px;margin-top:3px;color:var(--p-faint)}
 #cindy-pr-columns .p-symbol{font-size:13px;line-height:1.4;padding-top:1px;text-align:center}
-#cindy-pr-columns .p-logdetail{display:flex;flex-direction:column;min-width:0}
+#cindy-pr-columns .p-logdetail{display:flex;flex-direction:column;min-width:0;min-height:0}
 #cindy-pr-columns .p-loghead{padding:14px 20px 12px;border-bottom:1px solid var(--p-rule)}
 #cindy-pr-columns .p-logtitle{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 #cindy-pr-columns h3{font-size:14px;font-weight:500;margin:0}

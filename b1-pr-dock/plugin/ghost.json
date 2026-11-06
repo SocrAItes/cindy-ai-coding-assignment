@@ -4,7 +4,7 @@
   "name": "PR Dock",
   "description": "按 PR、检查、输出三栏查看 GitHub 待办，打开原始 PR、提交和 CI，并交给 Cindy 排查失败。",
   "whenToUse": "查看我创建的或等待我审阅的 GitHub PR、检查 CI 状态、排查失败检查时使用。",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "minCindyVersion": "0.1.126",
   "entry": "main.js",
   "command": "pr看板",

@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-06",
+  "repository": "SocrAItes/cindy-ai-coding-assignment",
+  "pullRequest": {
+    "number": 1,
+    "url": "https://github.com/SocrAItes/cindy-ai-coding-assignment/pull/1",
+    "state": "open",
+    "draft": true,
+    "headSha": "4fe1cba38280f9cf5733779b0e4a49cb8d9fa3b6",
+    "headBranch": "test/b1-failure-analysis",
+    "baseBranch": "main"
+  },
+  "pluginVersion": "0.1.4",
+  "hostVersion": "0.1.126",
+  "analysisTaskId": "4482fe93-9b24-4690-b92f-c2b491767ad1",
+  "analysisModelObserved": "Pi / DeepSeek V4 Flash / medium",
+  "uploadedScope": "18 plugin source/config/test files; no Markdown, screenshots, answers or personal experience draft",
+  "checks": {
+    "baseline": {
+      "sha": "4b84bceb1f7604994969afb940d931c92780458e",
+      "checks": [
+        {
+          "id": 127783269219,
+          "name": "unit-tests",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/SocrAItes/cindy-ai-coding-assignment/actions/runs/42185042640/job/127783269219"
+        }
+      ]
+    },
+    "testPR": {
+      "sha": "4fe1cba38280f9cf5733779b0e4a49cb8d9fa3b6",
+      "checks": [
+        {
+          "id": 127783300600,
+          "name": "unit-tests",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/SocrAItes/cindy-ai-coding-assignment/actions/runs/42185052214/job/127783300600"
+        }
+      ]
+    }
+  },
+  "manualAssistance": [
+    "Allowed read-only commands in Cindy default-permission task",
+    "Provided existing authenticated GitHub CLI binary path and per-process proxy; did not provide the expected diagnosis",
+    "Denied commands that would remove an existing fixed /tmp directory; stopped the first run to deliver the queued environment information"
+  ],
+  "remoteBaselinePluginVersion": "0.1.2",
+  "outcome": {
+    "prListAndFailedCheck": "verified in installed panel",
+    "prCommitAndJobLinks": "each clicked in panel and corresponding browser URL observed",
+    "taskHandoff": "created task 4482fe93-9b24-4690-b92f-c2b491767ad1",
+    "diagnosis": "CI asserts a fork commit URL; test commit used the base repository rather than pr.headRepo",
+    "replyReadback": "verified in panel after message-pagination and saved-record recovery fixes",
+    "existingTaskRecovery": "same saved task ID recovered after 0.1.4 update; final readback used only the refresh-progress button",
+    "localBehaviorTests": {
+      "passed": 18,
+      "failed": 0
+    },
+    "localSyntaxChecks": 7,
+    "isolatedUIRegression": "passed, including recovery without a second analyze dispatch",
+    "limitations": [
+      "CLI path and process proxy were supplied manually to the Agent task",
+      "Read-only task commands required manual approval",
+      "The Agent did not independently rerun tests locally because Node was absent from its PATH",
+      "New-head invalidation and concurrent double-click remain covered by local tests rather than a second remote PR update",
+      "Dark theme and wrap-up Skill execution were outside this B1 validation"
+    ]
+  },
+  "fixes": [
+    {
+      "version": "0.1.3",
+      "change": "Read nextCursor pages; preserve final-page refresh position and update same-ID streamed replies"
+    },
+    {
+      "version": "0.1.4",
+      "change": "Read saved analysis receipt when displaying check output, exposing a read-only refresh path without create/send"
+    },
+    {
+      "version": "0.1.5",
+      "change": "Keep the log-detail grid item within the viewport when displaying a long analysis reply; verified in the installed panel."
+    }
+  ],
+  "artifacts": {
+    "0.1.3": {
+      "sha256": "d483a082adce0b8568b731e637bf54a38a6897d7737bf60d2e9e70fdf3be3ed2",
+      "forgePack": "ok:true",
+      "forgeInstall": "ok:true; action:updated; enabled:true"
+    },
+    "0.1.4": {
+      "sha256": "a4ab3470b1704bdeb006181a88ac09379ff5d75e7bbc95957d21fd3682ac7181",
+      "forgePack": "ok:true",
+      "forgeInstall": "ok:true; action:updated; enabled:true"
+    },
+    "0.1.5": {
+      "sha256": "0baf3eb6c75ae0e2b535033b8981204b867e8b34d23d212b8b4532ce88e7f6d7",
+      "forgePack": "ok:true",
+      "forgeInstall": "ok:true; action:updated; enabled:true"
+    }
+  },
+  "evidenceFiles": [
+    "pr-1-unit-tests.log"
+  ],
+  "presentationVersion": "0.1.5",
+  "presentationScreenshots": [
+    "../screenshots/pr-dock.png"
+  ]
+}
